@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import FacebookSDK from '@/components/FacebookSDK';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'High Noon Optimist Club',
@@ -26,11 +27,12 @@ export default function RootLayout({
 
       <body
         // className={`antialiased ${montserrat.variable} ${montserrat.className}`}
-        className="antialiased"
+        className="antialiased flex flex-col min-h-screen"
       >
         <FacebookSDK />
         <Navbar />
-        {children}
+        <main className="flex-grow">{children}</main>
+        <Footer />
       </body>
     </html>
   );

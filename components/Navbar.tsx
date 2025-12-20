@@ -63,7 +63,7 @@ export default function Navbar() {
             <li key={link.name} className="group relative">
               <Link href={link.href} className="transition-colors duration-200">
                 {link.name}
-                <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full bg-primary transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
+                <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[3px] bg-primary transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
               </Link>
             </li>
           ))}
@@ -130,7 +130,7 @@ export default function Navbar() {
                 className="transition-colors duration-200"
               >
                 {link.name}
-                <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full bg-primary transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
+                <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[3px] bg-primary transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
               </Link>
             </li>
           ))}
