@@ -1,21 +1,53 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  /* Colors */
+  --color-primary: #0033a0;
+  --color-secondary: #f0e4b2;
+  --color-dark: #231f20;
+  --color-accent: #8b734b;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+  .bg-dark {
+    background-color: var(--color-dark);
+  }
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+  .text-dark {
+    color: var(--color-dark);
+  }
+  .text-accent {
+    color: var(--color-accent);
+  }
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+  .border-secondary {
+    border-color: var(--color-secondary);
+  }
+  .border-dark {
+    border-color: var(--color-dark);
+  }
+  .border-accent {
+    border-color: var(--color-accent);
   }
 }
 
