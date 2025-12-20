@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
+import FacebookSDK from '@/components/FacebookSDK';
 
 export const metadata: Metadata = {
   title: 'High Noon Optimist Club',
@@ -27,6 +28,7 @@ export default function RootLayout({
         // className={`antialiased ${montserrat.variable} ${montserrat.className}`}
         className="antialiased"
       >
+        <FacebookSDK />
         <Navbar />
         {children}
       </body>
