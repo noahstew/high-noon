@@ -59,7 +59,9 @@ export default function ApplicationUploadForm({
 
   const removeFile = () => {
     setFile(null);
-    const fileInput = document.getElementById('file-upload') as HTMLInputElement;
+    const fileInput = document.getElementById(
+      'file-upload'
+    ) as HTMLInputElement;
     if (fileInput) fileInput.value = '';
   };
 
@@ -93,11 +95,14 @@ export default function ApplicationUploadForm({
       if (response.ok && data.success) {
         setUploadStatus({
           type: 'success',
-          message: 'Sponsorship request submitted successfully! We will review it shortly.',
+          message:
+            'Sponsorship request submitted successfully! We will review it shortly.',
         });
         setFormData({ name: '', email: '' });
         setFile(null);
-        const fileInput = document.getElementById('file-upload') as HTMLInputElement;
+        const fileInput = document.getElementById(
+          'file-upload'
+        ) as HTMLInputElement;
         if (fileInput) fileInput.value = '';
       } else {
         setUploadStatus({
@@ -119,7 +124,10 @@ export default function ApplicationUploadForm({
     <div className={className}>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="upload-name" className="block font-semibold text-dark mb-1">
+          <label
+            htmlFor="upload-name"
+            className="block font-semibold text-dark mb-1"
+          >
             Your Name (optional)
           </label>
           <input
@@ -134,7 +142,10 @@ export default function ApplicationUploadForm({
         </div>
 
         <div>
-          <label htmlFor="upload-email" className="block font-semibold text-dark mb-1">
+          <label
+            htmlFor="upload-email"
+            className="block font-semibold text-dark mb-1"
+          >
             Your Email (optional)
           </label>
           <input
@@ -149,7 +160,10 @@ export default function ApplicationUploadForm({
         </div>
 
         <div>
-          <label htmlFor="file-upload" className="block font-semibold text-dark mb-1">
+          <label
+            htmlFor="file-upload"
+            className="block font-semibold text-dark mb-1"
+          >
             PDF File <span className="text-primary">*</span>
           </label>
 
@@ -161,7 +175,8 @@ export default function ApplicationUploadForm({
               <div className="flex flex-col items-center justify-center">
                 <FiUpload className="text-3xl text-accent mb-2" />
                 <p className="text-sm text-dark">
-                  <span className="font-semibold">Click to upload</span> or drag and drop
+                  <span className="font-semibold">Click to upload</span> or drag
+                  and drop
                 </p>
                 <p className="text-xs text-dark/60 mt-1">PDF only (Max 5MB)</p>
               </div>
