@@ -126,7 +126,11 @@ export default function GalleryEditorPage() {
         } else {
           const errorData = await response.json();
           console.error('Upload failed:', errorData);
-          alert(`Failed to upload ${file.name}: ${errorData.error || 'Unknown error'}`);
+          alert(
+            `Failed to upload ${file.name}: ${
+              errorData.error || 'Unknown error'
+            }`
+          );
         }
       }
 
