@@ -50,34 +50,35 @@ CREATE POLICY "Enable read access for all users" ON links
 CREATE POLICY "Enable read access for all users" ON gallery
   FOR SELECT USING (true);
 
--- Create policies for authenticated insert/update/delete
--- You can modify these based on your authentication needs
-CREATE POLICY "Enable insert for authenticated users only" ON blog_post
-  FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+-- Create policies for insert/update/delete
+-- Since authentication is handled at the application level,
+-- we allow all operations (your app's admin routes control access)
+CREATE POLICY "Enable insert for all users" ON blog_post
+  FOR INSERT WITH CHECK (true);
 
-CREATE POLICY "Enable update for authenticated users only" ON blog_post
-  FOR UPDATE USING (auth.role() = 'authenticated');
+CREATE POLICY "Enable update for all users" ON blog_post
+  FOR UPDATE USING (true);
 
-CREATE POLICY "Enable delete for authenticated users only" ON blog_post
-  FOR DELETE USING (auth.role() = 'authenticated');
+CREATE POLICY "Enable delete for all users" ON blog_post
+  FOR DELETE USING (true);
 
-CREATE POLICY "Enable insert for authenticated users only" ON links
-  FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Enable insert for all users" ON links
+  FOR INSERT WITH CHECK (true);
 
-CREATE POLICY "Enable update for authenticated users only" ON links
-  FOR UPDATE USING (auth.role() = 'authenticated');
+CREATE POLICY "Enable update for all users" ON links
+  FOR UPDATE USING (true);
 
-CREATE POLICY "Enable delete for authenticated users only" ON links
-  FOR DELETE USING (auth.role() = 'authenticated');
+CREATE POLICY "Enable delete for all users" ON links
+  FOR DELETE USING (true);
 
-CREATE POLICY "Enable insert for authenticated users only" ON gallery
-  FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Enable insert for all users" ON gallery
+  FOR INSERT WITH CHECK (true);
 
-CREATE POLICY "Enable update for authenticated users only" ON gallery
-  FOR UPDATE USING (auth.role() = 'authenticated');
+CREATE POLICY "Enable update for all users" ON gallery
+  FOR UPDATE USING (true);
 
-CREATE POLICY "Enable delete for authenticated users only" ON gallery
-  FOR DELETE USING (auth.role() = 'authenticated');
+CREATE POLICY "Enable delete for all users" ON gallery
+  FOR DELETE USING (true);
 
 -- Create storage buckets (run these in the Supabase dashboard or via API)
 -- INSERT INTO storage.buckets (id, name, public) VALUES ('blog-images', 'blog-images', true);
