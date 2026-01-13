@@ -1,4 +1,5 @@
 import FacebookPageEmbed from '@/components/FacebookPageEmbed';
+import LinkTree from '@/components/LinkTree';
 
 export default function Home() {
   return (
@@ -8,12 +9,15 @@ export default function Home() {
           Welcome to High Noon Optimist Club
         </h1>
 
+        {/* LinkTree Component */}
+        <LinkTree />
+
         <div className="flex flex-col items-center">
           <h2 className="text-3xl font-bold text-primary mb-4">
             Find us on Facebook!
           </h2>
           <FacebookPageEmbed
-            pageUrl="https://www.facebook.com/profile.php?id=100064661350870"
+            pageUrl="https://www.facebook.com/p/High-Noon-Optimist-Club-Regina-100064661350870/"
             width={500}
             height={600}
             showPosts={true}

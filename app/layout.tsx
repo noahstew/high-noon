@@ -23,8 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" href="/favicon.png" sizes="any" />
-
+      <head>
+        <link rel="icon" href="/favicon.png" sizes="any" />
+      </head>
       <body
         // className={`antialiased ${montserrat.variable} ${montserrat.className}`}
         className="antialiased flex flex-col min-h-screen"
