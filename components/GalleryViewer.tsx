@@ -77,7 +77,7 @@ export default function GalleryViewer({
         left: currentIndex * imageWidth,
         behavior: 'smooth',
       });
-      
+
       // Reset scrolling flag after animation
       setTimeout(() => {
         isScrollingRef.current = false;
@@ -172,7 +172,11 @@ export default function GalleryViewer({
             const scrollLeft = container.scrollLeft;
             const imageWidth = container.offsetWidth;
             const newIndex = Math.round(scrollLeft / imageWidth);
-            if (newIndex !== currentIndex && newIndex >= 0 && newIndex < images.length) {
+            if (
+              newIndex !== currentIndex &&
+              newIndex >= 0 &&
+              newIndex < images.length
+            ) {
               setCurrentIndex(newIndex);
             }
           }}

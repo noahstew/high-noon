@@ -40,10 +40,10 @@ export default function GalleryCard({
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        
+
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        
+
         {/* Photo Count Badge */}
         {imageCount > 1 && (
           <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium">
