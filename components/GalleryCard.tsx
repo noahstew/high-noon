@@ -7,25 +7,17 @@ interface GalleryCardProps {
   id: string;
   title: string;
   images: string[];
-  created_at: string;
   onOpen: () => void;
 }
 
 export default function GalleryCard({
   title,
   images,
-  created_at,
   onOpen,
 }: GalleryCardProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const coverImage = images && images.length > 0 ? images[0] : '/logo.png';
   const imageCount = images?.length || 0;
-
-  const formattedDate = new Date(created_at).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
 
   return (
     <div
@@ -54,10 +46,7 @@ export default function GalleryCard({
 
       {/* Caption Overlay - Subtle, iPhone-style */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-        <h3 className="text-white font-semibold text-lg mb-1 truncate">
-          {title}
-        </h3>
-        <p className="text-white/70 text-sm">{formattedDate}</p>
+        <h3 className="text-white font-semibold text-lg truncate">{title}</h3>
       </div>
 
       {/* Hover Indicator */}

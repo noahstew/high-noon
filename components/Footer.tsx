@@ -53,7 +53,7 @@ function Footer() {
           <div className="flex flex-col items-center md:items-end space-y-4">
             <h4 className="text-lg font-semibold text-primary">Follow Us</h4>
             <a
-              href="https://www.facebook.com/YOUR_PAGE_NAME"
+              href="https://www.facebook.com/p/High-Noon-Optimist-Club-Regina-100064661350870/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-dark hover:text-primary transition-colors duration-200 group"

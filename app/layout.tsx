@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
+import { Lora } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import FacebookSDK from '@/components/FacebookSDK';
@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   description: 'Website for the high noon optimist club of Regina Saskatchewan',
 };
 
-const montserrat = Montserrat({
+const lora = Lora({
   subsets: ['latin'], // Specify the necessary subsets for performance
   weight: ['400', '700'],
-  variable: '--font-montserrat',
+  variable: '--font-lora',
 });
 
 export default function RootLayout({
@@ -28,11 +28,11 @@ export default function RootLayout({
       </head>
       <body
         // className={`antialiased ${montserrat.variable} ${montserrat.className}`}
-        className="antialiased flex flex-col min-h-screen"
+        className={`antialiased flex flex-col min-h-screen ${lora.variable} ${lora.className}`}
       >
         <FacebookSDK />
         <Navbar />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow ">{children}</main>
         <Footer />
       </body>
     </html>
