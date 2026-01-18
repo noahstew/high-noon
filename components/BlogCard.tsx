@@ -35,9 +35,9 @@ export default function BlogCard({
 
   return (
     <Link href={`/blog/${id}`}>
-      <article className="group bg-white border-2 border-primary rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden h-full flex flex-col">
+      <article className="group bg-white border-2 border-primary rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden h-full flex flex-col md:flex-row md:min-h-[300px]">
         {/* Image */}
-        <div className="relative h-48 sm:h-56 md:h-64 bg-secondary overflow-hidden">
+        <div className="relative h-48 sm:h-56 md:h-auto md:w-2/5 bg-secondary overflow-hidden flex-shrink-0">
           <Image
             src={previewImage}
             alt={title}
@@ -52,7 +52,7 @@ export default function BlogCard({
         </div>
 
         {/* Content */}
-        <div className="p-6 flex-grow flex flex-col">
+        <div className="p-6 flex-grow flex flex-col md:w-3/5">
           {/* Title */}
           <h2 className="text-2xl font-bold text-dark mb-3 group-hover:text-primary transition-colors duration-200 line-clamp-2">
             {title}
@@ -77,7 +77,7 @@ export default function BlogCard({
         </div>
 
         {/* Decorative hover bar */}
-        <div className="h-1 bg-gradient-to-r from-primary via-accent to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        <div className="h-1 md:h-auto md:w-1 bg-gradient-to-r md:bg-gradient-to-b from-primary via-accent to-primary transform scale-x-0 md:scale-x-100 md:scale-y-0 group-hover:scale-x-100 md:group-hover:scale-y-100 transition-transform duration-300"></div>
       </article>
     </Link>
   );

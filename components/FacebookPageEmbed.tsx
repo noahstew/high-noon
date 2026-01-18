@@ -1,30 +1,22 @@
-'use client';
-
 interface FacebookPageEmbedProps {
   pageUrl: string;
   width?: number;
   height?: number;
-  showPosts?: boolean;
-  showCover?: boolean;
-  hideCTA?: boolean;
 }
 
 export default function FacebookPageEmbed({
   pageUrl,
-  width = 340,
-  height = 500,
-  showPosts = true,
-  showCover = true,
+  width = 500,
+  height = 700,
 }: FacebookPageEmbedProps) {
+  // Encode the URL for the iframe src
+  const encodedUrl = encodeURIComponent(pageUrl);
+  const iframeSrc = `https://www.facebook.com/plugins/page.php?href=${encodedUrl}&tabs=timeline&width=${width}&height=${height}&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId`;
+
   return (
-    <div
-      className="relative"
-      style={{ width: `${width}px`, height: `${height}px`, margin: '0 auto' }}
-    >
+    <div className="flex justify-center items-center w-full my-8">
       <iframe
-        src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(
-          pageUrl
-        )}&tabs=timeline&width=${width}&height=${height}&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`}
+        src={iframeSrc}
         width={width}
         height={height}
         style={{ border: 'none', overflow: 'hidden' }}
@@ -32,7 +24,6 @@ export default function FacebookPageEmbed({
         frameBorder="0"
         allowFullScreen={true}
         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-        loading="lazy"
       />
     </div>
   );
