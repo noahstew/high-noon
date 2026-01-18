@@ -152,17 +152,17 @@ export default async function Home() {
       )}
 
       {/* Facebook Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-8">
           <h2 className="text-4xl font-bold text-dark mb-4">
             Connect with us on Facebook
           </h2>
-          <div className="w-24 h-1 bg-primary mb-12"></div>
+          <div className="w-24 h-1 bg-primary mb-8"></div>
           <div className="flex justify-center">
             <FacebookPageEmbed
               pageUrl="https://www.facebook.com/p/High-Noon-Optimist-Club-Regina-100064661350870/"
               width={500}
-              height={700}
+              height={500}
             />
           </div>
         </div>
