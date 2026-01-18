@@ -22,6 +22,7 @@ export default function BlogCard({
   created_at,
 }: BlogCardProps) {
   const previewImage = images && images.length > 0 ? images[0] : '/logo.png';
+  const isPlaceholder = !images || images.length === 0;
   const displayDate = published_at || created_at;
   const formattedDate = new Date(displayDate).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -29,9 +30,15 @@ export default function BlogCard({
     day: 'numeric',
   });
 
-  // Extract first 150 characters for preview
+  // Strip HTML tags and extract first 150 characters for preview
+  const stripHtml = (html: string) => {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  };
+  const plainText = stripHtml(content);
   const contentPreview =
-    content.length > 150 ? content.substring(0, 150) + '...' : content;
+    plainText.length > 150 ? plainText.substring(0, 150) + '...' : plainText;
 
   return (
     <Link href={`/blog/${id}`}>
@@ -42,7 +49,9 @@ export default function BlogCard({
             src={previewImage}
             alt={title}
             fill
-            className="object-cover group-hover:scale-110 transition-transform duration-300"
+            className={`group-hover:scale-110 transition-transform duration-300 ${
+              isPlaceholder ? 'object-contain p-8' : 'object-cover'
+            }`}
           />
           {images && images.length > 1 && (
             <div className="absolute top-3 right-3 bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">

@@ -68,7 +68,7 @@ export default function BlogPage() {
             </p>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="flex flex-col gap-12">
             {posts.map((post) => (
               <BlogCard key={post.id} {...post} />
             ))}

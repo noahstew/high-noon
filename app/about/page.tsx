@@ -170,11 +170,11 @@ export default function AboutPage() {
       {/* Partnerships */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-8">
-          <div className="flex items-start gap-6 mb-12">
+          <div className="flex flex-col sm:flex-row items-start gap-6 mb-12">
             <div className="bg-primary w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0">
               <Handshake className="w-8 h-8 text-white" />
             </div>
-            <div>
+            <div className="flex-1">
               <h2 className="text-4xl font-bold text-dark mb-4">
                 Our Partnerships
               </h2>

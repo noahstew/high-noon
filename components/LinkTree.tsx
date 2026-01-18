@@ -63,9 +63,6 @@ export default function LinkTree() {
 
   return (
     <div className="w-full max-w-2xl mx-auto mb-12">
-      <h2 className="text-3xl font-bold text-primary mb-6 text-center">
-        External Links
-      </h2>
       <div className="space-y-4">
         {links.map((link) => (
           <div
