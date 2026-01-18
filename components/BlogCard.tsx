@@ -32,6 +32,11 @@ export default function BlogCard({
 
   // Strip HTML tags and extract first 150 characters for preview
   const stripHtml = (html: string) => {
+    if (typeof window === 'undefined') {
+      // Server-side: use regex to strip HTML tags
+      return html.replace(/<[^>]*>/g, '');
+    }
+    // Client-side: use DOM parsing
     const tmp = document.createElement('div');
     tmp.innerHTML = html;
     return tmp.textContent || tmp.innerText || '';
