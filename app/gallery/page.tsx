@@ -15,7 +15,7 @@ export default function GalleryPage() {
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedGallery, setSelectedGallery] = useState<GalleryItem | null>(
-    null
+    null,
   );
 
   useEffect(() => {
@@ -40,9 +40,13 @@ export default function GalleryPage() {
     return (
       <div className="min-h-screen p-4 sm:p-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-primary mb-8 text-center">
-            Gallery
-          </h1>
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-dark mb-4">Gallery</h1>
+            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              See us in action making a difference in our community
+            </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
@@ -60,9 +64,13 @@ export default function GalleryPage() {
     <>
       <div className="min-h-screen p-4 sm:p-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-primary mb-8 text-center">
-            Gallery
-          </h1>
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-dark mb-4">Gallery</h1>
+            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              See us in action making a difference in our community
+            </p>
+          </div>
 
           {items.length === 0 ? (
             <div className="text-center py-12">

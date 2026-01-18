@@ -11,7 +11,7 @@ const navLinks = [
 
 function Footer() {
   return (
-    <footer className="bg-gray-300 border-t-2 border-gray-400 mt-auto">
+    <footer className="bg-secondary border-t-2 border-primary mt-auto">
       <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           {/* Logo and Name Section */}

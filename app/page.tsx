@@ -120,7 +120,7 @@ export default async function Home() {
 
       {/* Latest Blog Post Section */}
       {latestPost && (
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gray-200">
           <div className="max-w-7xl mx-auto px-8">
             <div className="flex justify-between items-end mb-8">
               <div>

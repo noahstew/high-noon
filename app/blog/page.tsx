@@ -38,9 +38,14 @@ export default function BlogPage() {
     return (
       <div className="min-h-screen p-4 sm:p-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-primary mb-8 text-center">
-            Blog
-          </h1>
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-dark mb-4">Blog</h1>
+            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Read our recent blog posts about what we've been doing in our
+              community
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
               <div
@@ -57,9 +62,14 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen p-4 sm:p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-primary mb-8 text-center">
-          Blog
-        </h1>
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-dark mb-4">Blog</h1>
+          <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Read our recent blog posts about what we've been doing in our
+            community
+          </p>
+        </div>
 
         {posts.length === 0 ? (
           <div className="text-center py-12">

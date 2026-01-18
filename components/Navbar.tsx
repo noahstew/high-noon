@@ -42,7 +42,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 w-full bg-gray-300 px-6 py-5 flex justify-between items-center shadow-md z-50 ">
+    <nav className="sticky top-0 w-full bg-white px-6 py-5 flex justify-between items-center shadow-md z-50  border-b-2 border-primary">
       {/* Left: Logo */}
       <div className="flex items-center z-20 group">
         <Link href="/" className="flex items-center">
