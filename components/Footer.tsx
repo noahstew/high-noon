@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaFacebook } from 'react-icons/fa';
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
 
 const navLinks = [
   { name: 'About', href: '/about' },
@@ -60,6 +60,15 @@ function Footer() {
             >
               <FaFacebook className="text-3xl group-hover:scale-110 transition-transform duration-200" />
               <span className="font-medium">Facebook</span>
+            </a>
+            <a
+              href="https://www.instagram.com/highnoonoc?igsh=YjQ4eWJpbzRicGpy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 text-dark hover:text-primary transition-colors duration-200 group"
+            >
+              <FaInstagram className="text-3xl group-hover:scale-110 transition-transform duration-200" />
+              <span className="font-medium">Instagram</span>
             </a>
           </div>
         </div>

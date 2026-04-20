@@ -108,15 +108,86 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      <section className="py-16 bg-primary">
+        <div className="max-w-7xl mx-auto px-8">
+          <h2 className="text-4xl text-center font-bold text-white mb-4">
+            The Optimist Creed
+          </h2>
+          <div className="mx-auto my-6 h-px w-24 bg-white/80"></div>
+          <h4 className="text-2xl text-center text-secondary font-semibold">
+            Promote Yourself
+          </h4>
+          <div className="text-gray-200 text-lg text-center mt-4 max-w-3xl mx-auto space-y-3">
+            <p>To be so strong that nothing can disturb your peace of mind.</p>
+            <p>
+              To talk health, happiness and prosperity to every person you meet.
+            </p>
+            <p>
+              To make all your friends feel that there is something in them.
+            </p>
+            <p>
+              To look at the sunny side of everything and make your optimism
+              come true.
+            </p>
+            <p>
+              To think only of the best, to work only for the best, and to
+              expect only the best.
+            </p>
+            <p>
+              To be just as enthusiastic about the success of others as you are
+              about your own.
+            </p>
+            <p>
+              To forget the mistakes of the past and press on to the greater
+              achievements of the future.
+            </p>
+            <p>
+              To wear a cheerful countenance at all times and give every living
+              creature you meet a smile.
+            </p>
+            <p>
+              To give so much time to the improvement of yourself that you have
+              no time to criticize others.
+            </p>
+            <p>
+              To be too large for worry, too noble for anger, too strong for
+              fear, and too happy to permit the presence of trouble.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Embedded Google Calendar */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="flex items-center mb-4">
+            <div className="bg-primary w-16 h-16 rounded-full flex items-center justify-center mr-4">
+              <Calendar className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-4xl font-bold text-dark">Events Calendar</h2>
+          </div>
+          <div className="w-24 h-1 bg-primary mb-12"></div>
+          <div className="flex justify-center">
+            <iframe
+              src="https://calendar.google.com/calendar/embed?src=c5057ac7c3f6d2074a3a21a2a8449fdba71182aff6755a2559f13c7cd684db94%40group.calendar.google.com&ctz=America%2FRegina"
+              width="100%"
+              height="600"
+              frameBorder="0"
+              scrolling="no"
+              className="max-w-4xl w-full rounded-lg shadow-lg"
+            ></iframe>
+          </div>
+        </div>
+      </section>
 
       {/* Quick Links Section */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-8">
           <h2 className="text-4xl font-bold text-dark mb-4">Quick Links</h2>
           <div className="w-24 h-1 bg-primary mb-12"></div>
           <LinkTree />
         </div>
-      </section>
+      </section> */}
 
       {/* Latest Blog Post Section */}
       {latestPost && (

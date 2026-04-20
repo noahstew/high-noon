@@ -19,9 +19,6 @@ export default function AboutPage() {
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
             About Us
           </h1>
-          <p className="text-xl text-secondary max-w-2xl">
-            Optimists bring out the best in everyone
-          </p>
         </div>
       </section>
 
@@ -39,16 +36,8 @@ export default function AboutPage() {
           </div>
           <div className="max-w-4xl">
             <p className="text-xl text-dark leading-relaxed mb-6">
-              By providing hope and positive vision, Optimists bring out the
-              best in youth, our communities, and ourselves.
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              The High Noon Optimist Club of Regina is dedicated to fostering
-              optimism, supporting youth development, and strengthening our
-              community through service, leadership, and fellowship. We believe
-              in the power of positive thinking and action to create meaningful
-              change in the lives of young people and families throughout
-              Regina.
+              By providing hope and positive vision, Optimists work to bring out
+              the best in youth, our communities, and ourselves.
             </p>
           </div>
         </div>
@@ -135,15 +124,6 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-dark mb-2">
-                    Scholarship Programs
-                  </h3>
-                  <p className="text-gray-700">
-                    Supporting education through scholarships and awards that
-                    recognize academic achievement and community involvement.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-dark mb-2">
                     Community Events
                   </h3>
                   <p className="text-gray-700">
@@ -153,7 +133,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-dark mb-2">
-                    Fundraising Initiatives
+                    Financial Supports
                   </h3>
                   <p className="text-gray-700">
                     Conducting fundraisers to support our programs and make

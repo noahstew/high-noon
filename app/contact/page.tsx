@@ -78,8 +78,7 @@ export default function ContactPage() {
               <p className="font-semibold text-dark mb-2">What happens next?</p>
               <ul className="space-y-1 text-dark text-sm">
                 <li>• Your request will be reviewed by our committee</li>
-                <li>• We'll contact you within 5-7 business days</li>
-                <li>• We'll discuss sponsorship opportunities</li>
+                <li>• We'll contact you at our soonest opportunity </li>
               </ul>
             </div>
           </div>
