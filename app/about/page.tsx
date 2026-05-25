@@ -188,8 +188,7 @@ export default function AboutPage() {
                   to maximize our community impact.
                 </p>
                 <Link
-                  href="https://www.optimist.org"
-                  target="_blank"
+                  href="/about/community"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors"
                 >

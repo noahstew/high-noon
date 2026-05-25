@@ -110,8 +110,10 @@ export default function AdminPage() {
             className="bg-primary text-white p-8 rounded-lg hover:bg-dark transition-all shadow-md hover:shadow-xl transform hover:scale-105 border-2 border-accent cursor-pointer"
           >
             <div className="text-4xl mb-3">🔗</div>
-            <div className="text-xl font-bold">Links</div>
-            <div className="text-sm text-secondary mt-2">Manage site links</div>
+            <div className="text-xl font-bold">Community</div>
+            <div className="text-sm text-secondary mt-2">
+              Manage these links
+            </div>
           </button>
 
           <button
@@ -131,7 +133,9 @@ export default function AdminPage() {
           >
             <div className="text-4xl mb-3">🖼️</div>
             <div className="text-xl font-bold">Gallery</div>
-            <div className="text-sm text-secondary mt-2">Manage images</div>
+            <div className="text-sm text-secondary mt-2">
+              Manage gallery images
+            </div>
           </button>
         </div>
       </div>

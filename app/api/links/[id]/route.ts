@@ -4,7 +4,7 @@ import { supabase } from '@/lib/supabase';
 // DELETE - Delete a link
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -15,7 +15,7 @@ export async function DELETE(
       console.error('Error deleting link:', error);
       return NextResponse.json(
         { error: 'Failed to delete link' },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -24,15 +24,15 @@ export async function DELETE(
     console.error('Error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
-// PATCH - Update a link
-export async function PATCH(
+// PUT - Update a link
+export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -42,7 +42,7 @@ export async function PATCH(
     if (!title || !url) {
       return NextResponse.json(
         { error: 'Title and URL are required' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -61,7 +61,7 @@ export async function PATCH(
       console.error('Error updating link:', error);
       return NextResponse.json(
         { error: 'Failed to update link' },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -70,7 +70,53 @@ export async function PATCH(
     console.error('Error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500 },
+    );
+  }
+}
+
+// PATCH - Update a link
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  try {
+    const { id } = await params;
+    const body = await request.json();
+    const { title, url, image_url } = body;
+
+    if (!title || !url) {
+      return NextResponse.json(
+        { error: 'Title and URL are required' },
+        { status: 400 },
+      );
+    }
+
+    const { data, error } = await supabase
+      .from('links')
+      .update({
+        title,
+        url,
+        image_url: image_url || null,
+      })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error updating link:', error);
+      return NextResponse.json(
+        { error: 'Failed to update link' },
+        { status: 500 },
+      );
+    }
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error('Error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
     );
   }
 }

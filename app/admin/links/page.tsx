@@ -20,6 +20,7 @@ export default function AdminLinksPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [draggedItem, setDraggedItem] = useState<Link | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -55,24 +56,45 @@ export default function AdminLinksPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/links', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      if (editingId) {
+        // Update existing link
+        const response = await fetch(`/api/links/${editingId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
 
-      if (response.ok) {
-        setFormData({ title: '', url: '', image_url: '' });
-        setIsModalOpen(false);
-        fetchLinks();
+        if (response.ok) {
+          setFormData({ title: '', url: '', image_url: '' });
+          setEditingId(null);
+          setIsModalOpen(false);
+          fetchLinks();
+        } else {
+          alert('Failed to update link');
+        }
       } else {
-        alert('Failed to add link');
+        // Create new link
+        const response = await fetch('/api/links', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          setFormData({ title: '', url: '', image_url: '' });
+          setIsModalOpen(false);
+          fetchLinks();
+        } else {
+          alert('Failed to add link');
+        }
       }
     } catch (error) {
-      console.error('Error adding link:', error);
-      alert('Error adding link');
+      console.error('Error saving link:', error);
+      alert('Error saving link');
     } finally {
       setIsSubmitting(false);
     }
@@ -95,6 +117,22 @@ export default function AdminLinksPage() {
       console.error('Error deleting link:', error);
       alert('Error deleting link');
     }
+  };
+
+  const handleEdit = (link: Link) => {
+    setFormData({
+      title: link.title,
+      url: link.url,
+      image_url: link.image_url || '',
+    });
+    setEditingId(link.id);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingId(null);
+    setFormData({ title: '', url: '', image_url: '' });
   };
 
   const handleDragStart = (e: React.DragEvent, link: Link) => {
@@ -186,7 +224,11 @@ export default function AdminLinksPage() {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold text-dark">Your Links</h2>
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => {
+                setFormData({ title: '', url: '', image_url: '' });
+                setEditingId(null);
+                setIsModalOpen(true);
+              }}
               className="bg-accent hover:bg-primary text-white px-6 py-2 rounded-lg font-medium transition-colors"
             >
               + Add Link
@@ -254,6 +296,12 @@ export default function AdminLinksPage() {
                   </div>
 
                   <button
+                    onClick={() => handleEdit(link)}
+                    className="text-blue-500 hover:text-blue-700 px-4 py-2 font-medium transition-colors"
+                  >
+                    Edit
+                  </button>
+                  <button
                     onClick={() => handleDelete(link.id)}
                     className="text-red-500 hover:text-red-700 px-4 py-2 font-medium transition-colors"
                   >
@@ -266,14 +314,16 @@ export default function AdminLinksPage() {
         </div>
       </div>
 
-      {/* Add Link Modal */}
+      {/* Add/Edit Link Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold text-primary">Add New Link</h2>
+              <h2 className="text-2xl font-bold text-primary">
+                {editingId ? 'Edit Link' : 'Add New Link'}
+              </h2>
               <button
-                onClick={() => setIsModalOpen(false)}
+                onClick={handleCloseModal}
                 className="text-gray-500 hover:text-gray-700"
               >
                 <svg
@@ -345,7 +395,7 @@ export default function AdminLinksPage() {
               <div className="flex gap-3 mt-6">
                 <button
                   type="button"
-                  onClick={() => setIsModalOpen(false)}
+                  onClick={handleCloseModal}
                   className="flex-1 px-4 py-2 border-2 border-gray-300 text-dark rounded-lg hover:bg-gray-50 font-medium transition-colors"
                 >
                   Cancel
@@ -355,7 +405,11 @@ export default function AdminLinksPage() {
                   disabled={isSubmitting}
                   className="flex-1 px-4 py-2 bg-accent hover:bg-primary text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Adding...' : 'Add Link'}
+                  {isSubmitting
+                    ? 'Saving...'
+                    : editingId
+                      ? 'Update Link'
+                      : 'Add Link'}
                 </button>
               </div>
             </form>
