@@ -192,7 +192,7 @@ export default function AboutPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors"
                 >
-                  Learn More
+                  View our Partners
                   <ExternalLink className="w-4 h-4" />
                 </Link>
               </div>

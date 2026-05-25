@@ -7,6 +7,7 @@ const navLinks = [
   { name: 'Blog', href: '/blog' },
   { name: 'Gallery', href: '/gallery' },
   { name: 'Contact', href: '/contact' },
+  { name: 'Community Partners', href: '/about/community' },
 ];
 
 function Footer() {
