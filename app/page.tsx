@@ -34,36 +34,45 @@ export default async function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[700px] bg-primary overflow-hidden">
-        <Image
-          src="/group2.jpg"
-          alt="High Noon Optimist Club"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-primary/40 to-dark/70"></div>
-        <div className="relative max-w-7xl mx-auto px-8 h-full flex flex-col justify-center items-center text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 max-w-4xl leading-tight">
-            High Noon Optimist Club
-          </h1>
-          <p className="text-xl md:text-2xl text-secondary mb-8 max-w-3xl">
-            Bringing out the best in youth, our community, and ourselves
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="bg-white text-primary hover:bg-secondary hover:text-dark px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg flex items-center gap-2"
-            >
-              Get Involved
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/about"
-              className="bg-transparent hover:bg-white/10 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 backdrop-blur-sm border-2 border-white"
-            >
-              Learn More
-            </Link>
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary via-primary to-secondary">
+        <div className="relative max-w-7xl mx-auto px-8 py-16">
+          <div className="flex flex-col items-center text-center gap-12">
+            <div className="space-y-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white max-w-4xl mx-auto leading-tight">
+                High Noon Optimist Club
+              </h1>
+              <p className="text-xl md:text-2xl text-secondary max-w-3xl mx-auto">
+                Bringing out the best in youth, our community, and ourselves
+              </p>
+            </div>
+
+            <div className="relative w-full max-w-5xl mx-auto overflow-hidden rounded-3xl shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-primary/40 pointer-events-none" />
+              <Image
+                src="/banner.jpg"
+                alt="High Noon Optimist Club"
+                width={1920}
+                height={1080}
+                className="w-full h-auto object-contain object-center"
+                priority
+              />
+            </div>
+
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link
+                href="/contact"
+                className="bg-white text-primary hover:bg-secondary hover:text-dark px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300 hover:scale-105 shadow-lg flex items-center gap-2"
+              >
+                Get Involved
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/about"
+                className="bg-transparent hover:bg-white/10 text-white px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300 backdrop-blur-sm border-2 border-white"
+              >
+                Learn More
+              </Link>
+            </div>
           </div>
         </div>
       </section>
