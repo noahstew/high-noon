@@ -34,30 +34,26 @@ export default async function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary via-primary to-secondary">
-        <div className="relative max-w-7xl mx-auto px-8 py-16">
-          <div className="flex flex-col items-center text-center gap-12">
-            <div className="space-y-6">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white max-w-4xl mx-auto leading-tight">
+      <section className="relative overflow-hidden bg-primary">
+        <div className="relative w-full">
+          <Image
+            src="/banner.jpg"
+            alt="High Noon Optimist Club"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-contain object-center"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-transparent to-dark/70" />
+          <div className="absolute inset-0 flex min-h-full flex-col justify-between items-center text-center px-8 py-10">
+            <div className="space-y-6 max-w-4xl">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight text-shadow-sm text-shadow-primary ">
                 High Noon Optimist Club
               </h1>
-              <p className="text-xl md:text-2xl text-secondary max-w-3xl mx-auto">
+              <p className="text-xl pt-12 md:text-2xl text-secondary ">
                 Bringing out the best in youth, our community, and ourselves
               </p>
             </div>
-
-            <div className="relative w-full max-w-5xl mx-auto overflow-hidden rounded-3xl shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-primary/40 pointer-events-none" />
-              <Image
-                src="/banner.jpg"
-                alt="High Noon Optimist Club"
-                width={1920}
-                height={1080}
-                className="w-full h-auto object-contain object-center"
-                priority
-              />
-            </div>
-
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
                 href="/contact"
