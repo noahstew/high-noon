@@ -2,6 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Users, Target, Heart, Handshake, ExternalLink } from 'lucide-react';
 
+export const metadata = {
+  title: 'About | High Noon Optimist Club',
+  description:
+    'Learn about the High Noon Optimist Club mission, youth programs, community service, and partnership work in Regina, Saskatchewan.',
+};
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">

@@ -6,6 +6,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Calendar, Users, Heart } from 'lucide-react';
 
+export const metadata = {
+  title: 'Home | High Noon Optimist Club',
+  description:
+    'High Noon Optimist Club homepage with community programs, youth events, and membership information in Regina, Saskatchewan.',
+};
+
 export const revalidate = 60; // Revalidate every 60 seconds
 
 async function getLatestBlogPost() {

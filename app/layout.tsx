@@ -5,8 +5,32 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'High Noon Optimist Club',
-  description: 'Website for the high noon optimist club of Regina Saskatchewan',
+  title: {
+    default: 'High Noon Optimist Club',
+    template: '%s | High Noon Optimist Club',
+  },
+  description:
+    'High Noon Optimist Club of Regina, Saskatchewan — youth programs, community service, events, and local partnerships.',
+  keywords: [
+    'High Noon Optimist Club',
+    'Regina Saskatchewan',
+    'youth programs',
+    'community service',
+    'Optimist Club',
+    'youth leadership',
+    'local events',
+    'High Noon Regina',
+    'Optimist Club Regina',
+  ],
+  authors: [{ name: 'High Noon Optimist Club' }],
+  creator: 'High Noon Optimist Club',
+  icons: {
+    icon: '/favicon.png',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const lora = Lora({

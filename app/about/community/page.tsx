@@ -1,5 +1,11 @@
 import LinkTree from '@/components/LinkTree';
 
+export const metadata = {
+  title: 'Community Partners | High Noon Optimist Club',
+  description:
+    'Discover the community partners and local collaborations that support the High Noon Optimist Club in Regina.',
+};
+
 export default function CommunityPage() {
   return (
     <section className="py-20 bg-white">
