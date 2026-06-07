@@ -1,5 +1,11 @@
 'use client';
 
+export const metadata = {
+  title: 'Gallery | High Noon Optimist Club',
+  description:
+    'View photos from High Noon Optimist Club events, youth programs, and community activities in Regina, Saskatchewan.',
+};
+
 import { useState, useEffect } from 'react';
 import GalleryCard from '@/components/GalleryCard';
 import GalleryViewer from '@/components/GalleryViewer';
