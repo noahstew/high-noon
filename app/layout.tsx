@@ -48,6 +48,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.png" sizes="any" />
+        <meta
+          name="google-site-verification"
+          content="blZtsaET9FlwRj-6-UOY2HjvNqJqNIp5-TwnJHgly70"
+        />
       </head>
       <body
         // className={`antialiased ${montserrat.variable} ${montserrat.className}`}
