@@ -23,7 +23,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
   }>({ type: null, message: '' });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({
       ...formData,
@@ -43,7 +43,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: '2c036e9a-205c-404c-8cad-f21bb8a27d00',
+          access_key: 'bdeda27e-106c-4422-9cf8-91323d0cb4cb',
           name: formData.name,
           email: formData.email,
           message: formData.message,
