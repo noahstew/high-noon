@@ -1,4 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+import {
+  ADMIN_SESSION_COOKIE,
+  ADMIN_SESSION_COOKIE_PATH,
+  createAdminSessionToken,
+} from '@/lib/admin-session';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,7 +18,19 @@ export async function POST(request: NextRequest) {
     }
 
     if (password === adminPassword) {
-      return NextResponse.json({ success: true });
+      const response = NextResponse.json({ success: true });
+      response.cookies.set(
+        ADMIN_SESSION_COOKIE,
+        createAdminSessionToken(adminPassword),
+        {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          path: ADMIN_SESSION_COOKIE_PATH,
+          maxAge: 8 * 60 * 60,
+        }
+      );
+      return response;
     } else {
       return NextResponse.json(
         { success: false, message: 'Invalid password' },

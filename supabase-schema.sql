@@ -90,6 +90,10 @@ CREATE POLICY "Enable delete for all users" ON gallery
 -- Create storage buckets (run these in the Supabase dashboard or via API)
 -- INSERT INTO storage.buckets (id, name, public) VALUES ('blog-images', 'blog-images', true);
 -- INSERT INTO storage.buckets (id, name, public) VALUES ('blog-pdfs', 'blog-pdfs', true);
+-- Create the private bucket used by the admin document store:
+-- INSERT INTO storage.buckets (id, name, public, file_size_limit)
+-- VALUES ('documents', 'documents', false, 52428800)
+-- ON CONFLICT (id) DO NOTHING;
 -- INSERT INTO storage.buckets (id, name, public) VALUES ('gallery-images', 'gallery-images', true);
 -- INSERT INTO storage.buckets (id, name, public) VALUES ('link-images', 'link-images', true);
 

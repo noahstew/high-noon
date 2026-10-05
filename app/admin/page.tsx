@@ -42,9 +42,16 @@ export default function AdminPage() {
     }
   };
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('adminAuth');
-    setIsAuthenticated(false);
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/admin/logout', { method: 'POST' });
+      if (!response.ok) throw new Error('Failed to end admin session');
+      sessionStorage.removeItem('adminAuth');
+      setIsAuthenticated(false);
+    } catch (error) {
+      console.error('Error ending admin session:', error);
+      alert('Unable to log out. Please try again.');
+    }
   };
 
   const navigateTo = (path: string) => {
@@ -104,7 +111,7 @@ export default function AdminPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <button
             onClick={() => navigateTo('links')}
             className="bg-primary text-white p-8 rounded-lg hover:bg-dark transition-all shadow-md hover:shadow-xl transform hover:scale-105 border-2 border-accent cursor-pointer"
@@ -135,6 +142,17 @@ export default function AdminPage() {
             <div className="text-xl font-bold">Gallery</div>
             <div className="text-sm text-secondary mt-2">
               Manage gallery images
+            </div>
+          </button>
+
+          <button
+            onClick={() => navigateTo('storage')}
+            className="bg-primary text-white p-8 rounded-lg hover:bg-dark transition-all shadow-md hover:shadow-xl transform hover:scale-105 border-2 border-accent cursor-pointer"
+          >
+            <div className="text-4xl mb-3">📁</div>
+            <div className="text-xl font-bold">Storage</div>
+            <div className="text-sm text-secondary mt-2">
+              Upload & download documents
             </div>
           </button>
         </div>
