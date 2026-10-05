@@ -69,7 +69,14 @@ export async function PATCH(
   try {
     const { id } = await params;
     const body = await request.json();
-    const { title, content, images, published_at } = body;
+    const {
+      title,
+      content,
+      images,
+      pdf_attachment,
+      pdf_attachment_name,
+      published_at,
+    } = body;
 
     if (!title || !content) {
       return NextResponse.json(
@@ -84,6 +91,8 @@ export async function PATCH(
         title,
         content,
         images: images || [],
+        pdf_attachment: pdf_attachment || null,
+        pdf_attachment_name: pdf_attachment_name || null,
         published_at: published_at || null,
       })
       .eq('id', id)
@@ -93,7 +102,12 @@ export async function PATCH(
     if (error) {
       console.error('Error updating blog post:', error);
       return NextResponse.json(
-        { error: 'Failed to update blog post' },
+        {
+          error:
+            error.code === 'PGRST204' || error.code === '42703'
+              ? 'The blog PDF attachment columns are missing. Run the blog_post PDF attachment SQL migration in Supabase, then try again.'
+              : 'Failed to update blog post',
+        },
         { status: 500 }
       );
     }

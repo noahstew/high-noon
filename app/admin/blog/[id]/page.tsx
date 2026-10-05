@@ -17,6 +17,8 @@ export default function BlogEditorPage() {
     title: '',
     content: '',
     images: [] as string[],
+    pdf_attachment: null as string | null,
+    pdf_attachment_name: null as string | null,
     published_at: '',
   });
 
@@ -54,6 +56,8 @@ export default function BlogEditorPage() {
           title: data.title,
           content: data.content,
           images: data.images || [],
+          pdf_attachment: data.pdf_attachment || null,
+          pdf_attachment_name: data.pdf_attachment_name || null,
           published_at: data.published_at
             ? new Date(data.published_at).toISOString().split('T')[0]
             : '',
@@ -108,6 +112,7 @@ export default function BlogEditorPage() {
         body: JSON.stringify(submitData),
       });
 
+      const responseData = await response.json();
       if (response.ok) {
         alert(
           isNewPost
@@ -116,7 +121,7 @@ export default function BlogEditorPage() {
         );
         router.push('/admin/blog');
       } else {
-        alert('Failed to save blog post');
+        alert(responseData.error || 'Failed to save blog post');
       }
     } catch (error) {
       console.error('Error saving blog post:', error);
@@ -192,6 +197,58 @@ export default function BlogEditorPage() {
     setFormData((prev) => ({
       ...prev,
       images: prev.images.filter((_, i) => i !== index),
+    }));
+  };
+
+  const handlePdfUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (
+      !file.name.toLowerCase().endsWith('.pdf') ||
+      (file.type && file.type !== 'application/pdf')
+    ) {
+      alert('Please select a PDF file');
+      e.target.value = '';
+      return;
+    }
+
+    setIsUploading(true);
+    try {
+      const uploadData = new FormData();
+      uploadData.append('file', file);
+      uploadData.append('bucket', 'blog-pdfs');
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: uploadData,
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        alert(`Failed to upload PDF: ${data.error || 'Unknown error'}`);
+        return;
+      }
+
+      setFormData((prev) => ({
+        ...prev,
+        pdf_attachment: data.publicUrl,
+        pdf_attachment_name: file.name,
+      }));
+    } catch (error) {
+      console.error('Error uploading PDF:', error);
+      alert('Error uploading PDF');
+    } finally {
+      setIsUploading(false);
+      e.target.value = '';
+    }
+  };
+
+  const removePdf = () => {
+    setFormData((prev) => ({
+      ...prev,
+      pdf_attachment: null,
+      pdf_attachment_name: null,
     }));
   };
 
@@ -385,6 +442,57 @@ export default function BlogEditorPage() {
               </p>
             </div>
 
+            {/* PDF Attachment */}
+            <div>
+              <label className="block text-sm font-medium text-dark mb-2">
+                PDF Attachment (Optional)
+              </label>
+              <label
+                className={`inline-block px-6 py-2 rounded-lg font-medium transition-colors ${
+                  isUploading
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-accent hover:bg-primary cursor-pointer'
+                } text-white`}
+              >
+                {isUploading
+                  ? 'Uploading...'
+                  : formData.pdf_attachment
+                  ? 'Replace PDF'
+                  : '+ Upload PDF'}
+                <input
+                  type="file"
+                  accept="application/pdf,.pdf"
+                  onChange={handlePdfUpload}
+                  disabled={isUploading}
+                  className="hidden"
+                />
+              </label>
+              <p className="text-xs text-gray-500 mt-2">
+                Upload one PDF file. A new upload replaces the current attachment.
+                The attachment is linked to the post when you save it.
+              </p>
+              {formData.pdf_attachment && (
+                <div className="mt-4 flex items-center gap-3 p-4 bg-gray-50 rounded-lg border-2 border-gray-200">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-red-100 text-red-600">
+                    <span className="text-xs font-bold">PDF</span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-dark">
+                      {formData.pdf_attachment_name || 'Attached PDF'}
+                    </p>
+                    <p className="text-xs text-gray-500">Ready to attach</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={removePdf}
+                    className="shrink-0 px-3 py-2 text-sm font-medium text-red-600 hover:text-red-800"
+                  >
+                    Remove
+                  </button>
+                </div>
+              )}
+            </div>
+
             {/* Images */}
             <div>
               <label className="block text-sm font-medium text-dark mb-2">
@@ -475,10 +583,12 @@ export default function BlogEditorPage() {
             </button>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || isUploading}
               className="flex-1 px-4 py-2 bg-accent hover:bg-primary text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting
+              {isUploading
+                ? 'Uploading...'
+                : isSubmitting
                 ? 'Saving...'
                 : isNewPost
                 ? 'Create Post'

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Calendar, User, ArrowLeft } from 'lucide-react';
+import { Calendar, User, ArrowLeft, Download } from 'lucide-react';
 import ImageGallery from '@/components/ImageGallery';
 
 interface BlogPost {
@@ -11,6 +11,8 @@ interface BlogPost {
   title: string;
   content: string;
   images?: string[];
+  pdf_attachment?: string | null;
+  pdf_attachment_name?: string | null;
   published_at?: string;
   created_at: string;
 }
@@ -125,6 +127,25 @@ export default function BlogPostClient() {
               <User className="w-5 h-5 text-primary" />
               <span>Admin</span>
             </div>
+            {post.pdf_attachment && (
+              <a
+                href={`${post.pdf_attachment}${
+                  post.pdf_attachment.includes('?') ? '&' : '?'
+                }download=${encodeURIComponent(
+                  post.pdf_attachment_name || 'attachment.pdf'
+                )}`}
+                download={post.pdf_attachment_name || 'attachment.pdf'}
+                aria-label={`Download ${
+                  post.pdf_attachment_name || 'PDF attachment'
+                }`}
+                className="ml-auto inline-flex max-w-full items-center gap-2 text-primary transition-colors hover:text-dark"
+              >
+                <span className="max-w-56 truncate font-medium">
+                  {post.pdf_attachment_name || 'PDF attachment'}
+                </span>
+                <Download className="h-5 w-5 shrink-0" aria-hidden="true" />
+              </a>
+            )}
           </div>
         </header>
 

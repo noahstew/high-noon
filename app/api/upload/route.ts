@@ -18,6 +18,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (bucket === 'blog-pdfs') {
+      if (!file.name.toLowerCase().endsWith('.pdf')) {
+        return NextResponse.json(
+          { error: 'Only PDF files can be uploaded to this bucket' },
+          { status: 400 }
+        );
+      }
+
+      const header = new Uint8Array(await file.slice(0, 5).arrayBuffer());
+      if (new TextDecoder().decode(header) !== '%PDF-') {
+        return NextResponse.json(
+          { error: 'The uploaded file is not a valid PDF' },
+          { status: 400 }
+        );
+      }
+    }
+
     // Generate unique filename
     const fileExt = file.name.split('.').pop();
     const fileName = `${Date.now()}-${Math.random()
@@ -33,7 +50,7 @@ export async function POST(request: NextRequest) {
     const { data, error } = await supabase.storage
       .from(bucket)
       .upload(filePath, buffer, {
-        contentType: file.type,
+        contentType: bucket === 'blog-pdfs' ? 'application/pdf' : file.type,
         upsert: false,
       });
 

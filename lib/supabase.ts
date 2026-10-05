@@ -16,6 +16,8 @@ export interface BlogPost {
   title: string;
   content: string;
   images: string[]; // Array of storage bucket paths
+  pdf_attachment: string | null;
+  pdf_attachment_name: string | null;
   published_at: string | null;
   created_at: string;
 }

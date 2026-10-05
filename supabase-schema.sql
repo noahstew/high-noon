@@ -7,9 +7,16 @@ CREATE TABLE IF NOT EXISTS blog_post (
   title TEXT NOT NULL,
   content TEXT NOT NULL,
   images TEXT[] DEFAULT '{}', -- Array of storage bucket paths
+  pdf_attachment TEXT,
+  pdf_attachment_name TEXT,
   published_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+-- Add PDF attachment fields to existing blog_post tables
+ALTER TABLE blog_post
+  ADD COLUMN IF NOT EXISTS pdf_attachment TEXT,
+  ADD COLUMN IF NOT EXISTS pdf_attachment_name TEXT;
 
 -- Create links table
 CREATE TABLE IF NOT EXISTS links (
@@ -82,5 +89,13 @@ CREATE POLICY "Enable delete for all users" ON gallery
 
 -- Create storage buckets (run these in the Supabase dashboard or via API)
 -- INSERT INTO storage.buckets (id, name, public) VALUES ('blog-images', 'blog-images', true);
+-- INSERT INTO storage.buckets (id, name, public) VALUES ('blog-pdfs', 'blog-pdfs', true);
 -- INSERT INTO storage.buckets (id, name, public) VALUES ('gallery-images', 'gallery-images', true);
 -- INSERT INTO storage.buckets (id, name, public) VALUES ('link-images', 'link-images', true);
+
+-- Permit the app's anon-key upload request to insert PDFs into this bucket.
+-- The blog-pdfs bucket must exist before running this policy.
+DROP POLICY IF EXISTS "Allow PDF uploads to blog-pdfs" ON storage.objects;
+CREATE POLICY "Allow PDF uploads to blog-pdfs" ON storage.objects
+  FOR INSERT TO anon
+  WITH CHECK (bucket_id = 'blog-pdfs');
